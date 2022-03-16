@@ -1,0 +1,3 @@
+
+# Ignore openssl generated files
+./ssl/*

@@ -1,0 +1,19 @@
+version: "3.1"
+
+services: # containers, same as docker run
+  mongo: # a friendly name. this is also DNS name inside network
+    image: mongo:4.2
+    volumes:
+      - mongo-db:/data/db
+      #- mongo-db:/data/config
+    ports: 
+      - '27017:27017'
+  golang:
+    build: .
+    command: ./docker-golang-grpc
+    ports:
+      - '50051:50051'
+    depends_on:
+      - mongo
+volumes:
+  mongo-db:
